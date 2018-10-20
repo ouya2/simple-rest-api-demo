@@ -1,6 +1,7 @@
 package com.acme.model;
 
 import com.google.common.base.MoreObjects;
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "customer")
-public class Customer  {
+public class Customer implements Serializable {
 
   @Id
   @GeneratedValue

@@ -1,6 +1,7 @@
 package com.acme.model;
 
 import com.google.common.base.MoreObjects;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Address {
+public class Address implements Serializable {
 
   @Id
   @GeneratedValue
