@@ -1,3 +1,6 @@
+spring.jmx:
+  enabled: false
+
 spring.datasource:
   driverClassName: org.h2.Driver
   url: jdbc:h2:mem:customercrud;MODE=MySQL
@@ -5,6 +8,10 @@ spring.datasource:
 server:
   port: 8080
 
+management:
+  port: 8081
+  security:
+    enabled: false
 
 security:
   basic:
@@ -18,23 +25,16 @@ spring:
 spring.jpa:
   hibernate.ddl-auto: create-drop
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 customer.service:
-  name: 'Customer Profile:'
+  name: 'Default profile'
+
+project:
+  name: spring-boot-rest-api-demo
+  version: 0.1
+  description: boot-example default description
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}

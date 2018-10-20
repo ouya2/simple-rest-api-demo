@@ -3,10 +3,12 @@ package com.acme.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Component;
 
 /**
  * Health check
  */
+@Component
 public class CustomerServiceHealthChecker implements HealthIndicator {
 
   @Autowired
@@ -14,7 +16,7 @@ public class CustomerServiceHealthChecker implements HealthIndicator {
 
   @Override
   public Health health() {
-    return Health.up().withDetail("details", "{ 'internals' : 'getting close to limit', 'profile' : '" +
-        this.configuration.getName() + "' }").status("itsok!").build();
+    return Health.up().withDetail("details", "{ 'internals' : 'server is running fine', 'profile' : '" +
+        this.configuration.getName() + "' }").status("OK").build();
   }
 }

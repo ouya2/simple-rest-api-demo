@@ -20,9 +20,8 @@ public abstract class BaseRestController {
   @ExceptionHandler(InvalidDataFormatException.class)
   public
   @ResponseBody
-  ErrorDetails handleDataStoreException(InvalidDataFormatException ex, WebRequest request, HttpServletResponse response) {
+  ErrorDetails handleDataStoreException(InvalidDataFormatException ex) {
     LOG.info("Converting Invalid Data format exception to RestResponse : " + ex.getMessage());
-
     return new ErrorDetails(ex, "Invalid data error.");
   }
 
@@ -30,9 +29,8 @@ public abstract class BaseRestController {
   @ExceptionHandler(ResourceNotFoundException.class)
   public
   @ResponseBody
-  ErrorDetails handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request, HttpServletResponse response) {
+  ErrorDetails handleResourceNotFoundException(ResourceNotFoundException ex) {
     LOG.info("ResourceNotFoundException handler:" + ex.getMessage());
-
     return new ErrorDetails(ex, "Resource cannot be located.");
   }
 

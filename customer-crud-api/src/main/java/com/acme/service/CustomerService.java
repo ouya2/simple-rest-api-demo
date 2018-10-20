@@ -20,7 +20,7 @@ public class CustomerService {
   }
 
   public Customer createCustomer(Customer customer) {
-    LOGGER.info("Saving new customer ...");
+    LOGGER.info("Saving new customer...");
     return customerRepository.save(customer);
   }
 
