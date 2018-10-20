@@ -1,6 +1,7 @@
 package com.acme.model;
 
 import com.google.common.base.MoreObjects;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -18,15 +19,18 @@ import javax.validation.constraints.NotNull;
 @Table(name = "customer")
 public class Customer implements Serializable {
 
+  @ApiModelProperty(required = true)
   @Id
   @GeneratedValue
   @Column(name = "customer_id")
   private Long id;
 
+  @ApiModelProperty(required = true)
   @NotNull
   @Column(name = "first_name")
   private String firstName;
 
+  @ApiModelProperty(required = true)
   @NotNull
   @Column(name = "last_name")
   private String lastName;

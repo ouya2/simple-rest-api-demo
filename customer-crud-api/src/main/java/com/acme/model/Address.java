@@ -1,6 +1,7 @@
 package com.acme.model;
 
 import com.google.common.base.MoreObjects;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Address implements Serializable {
 
+  @ApiModelProperty(required = true, position = 1)
   @Id
   @GeneratedValue
   @Column(name = "address_id")
@@ -19,14 +21,17 @@ public class Address implements Serializable {
   @Column(name = "address_number")
   private String addressNumber;
 
+  @ApiModelProperty(required = true)
   @NotNull
   @Column(name = "street_name")
   private String street;
 
+  @ApiModelProperty(required = true)
   @NotNull
   @Column
   private String suburb;
 
+  @ApiModelProperty(required = true)
   @NotNull
   @Column
   private String city;

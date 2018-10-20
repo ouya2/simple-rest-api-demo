@@ -32,8 +32,7 @@ public abstract class BaseRestController {
     return new ErrorDetails(ex, "Resource cannot be located.");
   }
 
-  //todo: replace with exception mapping
-  public static <T> T checkResourceFound(final T resource) {
+  public <T> T checkResourceFound(final T resource) {
     if (resource == null) {
       throw new ResourceNotFoundException("resource not found");
     }
