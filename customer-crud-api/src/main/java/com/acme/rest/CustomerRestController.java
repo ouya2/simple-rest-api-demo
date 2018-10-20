@@ -51,7 +51,13 @@ public class CustomerRestController extends BaseRestController {
     return customer;
   }
 
-
-
-
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @ApiOperation(value = "Delete a customer resource.", notes="Valid id is required, once deleted the resource cannot be recovered.")
+  @ApiResponses(value = {@ApiResponse(code = 404, message = "Customer resource cannot be found.")})
+  public void deleteCustomer(@ApiParam(value = "The ID of the existing customer resource.", required = true)
+  @PathVariable("id") Long id) {
+    checkResourceFound(this.customerService.getCustomer(id));
+    this.customerService.deleteCustomer(id);
+  }
 }

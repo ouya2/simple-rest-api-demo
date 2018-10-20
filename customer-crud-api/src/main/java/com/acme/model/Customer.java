@@ -40,7 +40,6 @@ public class Customer implements Serializable {
   @Column
   private String title;
 
-  @NotNull
   @Column(name = "gender")
   private Gender sex;
 
