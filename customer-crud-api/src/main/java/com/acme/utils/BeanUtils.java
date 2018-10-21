@@ -43,8 +43,8 @@ public class BeanUtils {
   /**
    * Return the customer properties names to ignore.
    *
-   * @param source
-   * @return
+   * @param source {@link Customer}
+   * @return array of property names
    */
   public static String[] getIgnoreCustomerPropertyNames(Customer source) {
     if (source == null) {
@@ -89,9 +89,6 @@ public class BeanUtils {
 
   /**
    * Get the null value properties excluding id and addresses.
-   *
-   * @param source
-   * @return
    */
   private static String[] getNullPropertyNames(Customer source) {
     final BeanWrapper wrappedSource = new BeanWrapperImpl(source);

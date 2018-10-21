@@ -1,6 +1,5 @@
 package com.acme.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.base.MoreObjects;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -18,7 +17,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {
