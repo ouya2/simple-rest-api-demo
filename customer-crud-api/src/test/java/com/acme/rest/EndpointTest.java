@@ -1,5 +1,6 @@
 package com.acme.rest;
 
+import com.acme.model.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -34,5 +35,9 @@ public class EndpointTest {
    */
   protected String json(Object o) throws IOException {
     return objectMapper.writeValueAsString(o);
+  }
+
+  protected Customer toCustomer(String response) throws IOException {
+    return objectMapper.readValue(response, Customer.class);
   }
 }

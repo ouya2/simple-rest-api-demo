@@ -39,14 +39,12 @@ public class Address implements Serializable {
   @Column
   private String city;
 
-  @NotNull
   @Column
   private String state;
 
   @Column
   private String country;
 
-  @NotNull
   @Column(name = "post_code")
   private String pinCode;
 
@@ -55,10 +53,9 @@ public class Address implements Serializable {
 
   public Address(String addressNumber, String street, String suburb, String city) {
     this.addressNumber = addressNumber;
-    this.city = city;
     this.street = street;
-    this.city = city;
     this.suburb = suburb;
+    this.city = city;
   }
 
   public Long getId() {
