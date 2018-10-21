@@ -7,9 +7,17 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * Web configuration
+ */
 @Configuration
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
+  /**
+   * Set the content type to JSON
+   *
+   * @param configurer
+   */
   @Override
   public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
     configurer.defaultContentType(MediaType.APPLICATION_JSON);
