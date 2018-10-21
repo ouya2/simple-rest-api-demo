@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,7 +38,7 @@ public class CustomerRestController extends BaseRestController {
   @ApiResponses(value = {@ApiResponse(code = 201, message = "New Customer created"),
       @ApiResponse(code = 400, message = "Bad request"),
       @ApiResponse(code = 500, message = "System error encountered")})
-  public Customer createCustomer(@RequestBody Customer customer) {
+  public Customer createCustomer(@Valid @RequestBody Customer customer) {
     return this.customerService.createCustomer(customer);
   }
 
@@ -68,7 +69,7 @@ public class CustomerRestController extends BaseRestController {
   @ApiOperation(value = "Update a customer resource.")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Customer/Address resource cannot be found.")})
   public void updateCustomer(@ApiParam(value = "The ID of the existing customer resource.", required = true)
-      @PathVariable("id") Long id, @RequestBody Customer customer) {
+      @PathVariable("id") Long id, @Valid @RequestBody Customer customer) {
     Customer existingCustomer = this.customerService.getCustomer(id);
     checkResourceFound(existingCustomer);
     BeanUtils.copyCustomerProperties(customer, existingCustomer);

@@ -1,6 +1,5 @@
 package com.acme.rest;
 
-import com.acme.exception.InvalidDataFormatException;
 import com.acme.exception.ResourceNotFoundException;
 import com.acme.model.ErrorDetails;
 import org.slf4j.Logger;
@@ -13,15 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public abstract class BaseRestController {
 
   protected final Logger LOG = LoggerFactory.getLogger(getClass());
-
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(InvalidDataFormatException.class)
-  public
-  @ResponseBody
-  ErrorDetails handleDataStoreException(InvalidDataFormatException ex) {
-    LOG.info("Converting Invalid Data format exception to RestResponse : " + ex.getMessage());
-    return new ErrorDetails(ex, "Invalid data error.");
-  }
 
   @ResponseStatus(HttpStatus.NOT_FOUND)
   @ExceptionHandler(ResourceNotFoundException.class)

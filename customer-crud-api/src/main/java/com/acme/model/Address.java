@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Address implements Serializable {
@@ -42,9 +43,11 @@ public class Address implements Serializable {
   @Column
   private String state;
 
+  @Pattern(regexp = "^[A-Za-z|\\s]+$")
   @Column
   private String country;
 
+  @Pattern(regexp = "^[0-9]+$")
   @Column(name = "post_code")
   private String pinCode;
 

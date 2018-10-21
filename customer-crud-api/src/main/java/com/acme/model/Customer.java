@@ -1,5 +1,6 @@
 package com.acme.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.base.MoreObjects;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -13,8 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {
@@ -53,6 +57,8 @@ public class Customer implements Serializable {
   @Column(name = "marital_status")
   private String maritalStatus;
 
+  @Max(100)
+  @Min(0)
   @Column(name = "credit_rating")
   private Integer creditRating;
 
@@ -182,10 +188,9 @@ public class Customer implements Serializable {
         .toString();
   }
 
-  public static enum Gender {
-
+  public enum Gender {
     M,
 
-    F;
+    F
   }
 }
