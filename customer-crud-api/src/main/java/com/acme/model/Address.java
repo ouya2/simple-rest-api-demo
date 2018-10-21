@@ -3,6 +3,7 @@ package com.acme.model;
 import com.google.common.base.MoreObjects;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Address implements Serializable {
+
+  public static final String ID_PROPERTY   = "id";
 
   @ApiModelProperty(required = true, position = 1)
   @Id
@@ -50,11 +53,12 @@ public class Address implements Serializable {
   public Address() {
   }
 
-  public Address(String addressNumber, String city, String state, String pinCode) {
+  public Address(String addressNumber, String street, String suburb, String city) {
     this.addressNumber = addressNumber;
     this.city = city;
-    this.state = state;
-    this.pinCode = pinCode;
+    this.street = street;
+    this.city = city;
+    this.suburb = suburb;
   }
 
   public Long getId() {
@@ -132,5 +136,26 @@ public class Address implements Serializable {
         .add("Country", country)
         .add("Pin code", pinCode)
         .toString();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
+    final Address other = (Address) obj;
+    return Objects.equals(this.addressNumber, other.addressNumber)
+        && Objects.equals(this.street, other.street)
+        && Objects.equals(this.suburb, other.suburb)
+        && Objects.equals(this.city, other.city)
+        && Objects.equals(this.state, other.state)
+        && Objects.equals(this.pinCode, other.pinCode)
+        && Objects.equals(this.country, other.country);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(
+        this.addressNumber, this.street, this.suburb,
+        this.city, this.state, this.pinCode, this.country);
   }
 }

@@ -19,6 +19,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "customer")
 public class Customer implements Serializable {
 
+  public static final String ID_PROPERTY              = "id";
+  public static final String ADDRESSES_PROPERTY       = "addresses";
+
   @ApiModelProperty(required = true)
   @Id
   @GeneratedValue

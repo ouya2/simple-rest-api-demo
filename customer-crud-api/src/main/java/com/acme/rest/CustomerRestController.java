@@ -2,6 +2,7 @@ package com.acme.rest;
 
 import com.acme.model.Customer;
 import com.acme.service.CustomerService;
+import com.acme.utils.BeanUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -59,5 +60,18 @@ public class CustomerRestController extends BaseRestController {
   @PathVariable("id") Long id) {
     checkResourceFound(this.customerService.getCustomer(id));
     this.customerService.deleteCustomer(id);
+  }
+
+  @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.OK)
+  @ApiOperation(value = "Update a customer resource.")
+  @ApiResponses(value = {@ApiResponse(code = 404, message = "Customer/Address resource cannot be found.")})
+  public void updateCustomer(@ApiParam(value = "The ID of the existing customer resource.", required = true)
+      @PathVariable("id") Long id, @RequestBody Customer customer) {
+    Customer existingCustomer = this.customerService.getCustomer(id);
+    checkResourceFound(existingCustomer);
+    BeanUtils.copyCustomerProperties(customer, existingCustomer);
+    this.customerService.updateCustomer(existingCustomer);
   }
 }

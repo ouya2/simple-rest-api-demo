@@ -2,6 +2,7 @@ package com.acme.rest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -68,4 +69,27 @@ public class CustomerEndpointsTest extends EndpointTest {
           .andDo(print())
           .andExpect(status().isNoContent());
   }
+
+  @Test
+  public void updateAndGetCustomer() throws Exception {
+    Long customerId = testCustomer.getId();
+    Customer newCustomer = new Customer("John", "Lennings");
+    newCustomer.setMiddleName("Walli");
+    String jsonBody = json(newCustomer);
+    mockMvc.perform(patch("/api/customers/{id}", customerId)
+                  .accept(JSON_MEDIA_TYPE)
+                  .content(jsonBody)
+                  .contentType(JSON_MEDIA_TYPE))
+        .andDo(print())
+        .andExpect(status().isOk());
+
+    mockMvc.perform(get("/api/customers/{id}", customerId))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(JSON_MEDIA_TYPE))
+        .andExpect(jsonPath("$.id").value(customerId))
+        .andExpect(jsonPath("$.firstName").value("John"))
+        .andExpect(jsonPath("$.lastName").value("Lennings"));
+  }
+
 }

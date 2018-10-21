@@ -35,7 +35,7 @@ public class CustomerService {
   }
 
   public Customer getCustomer(Long id) {
-    LOGGER.info("Getting customer..");
+    LOGGER.info("Getting customer for id - " + id);
     return customerRepository.findOne(id);
   }
 }
